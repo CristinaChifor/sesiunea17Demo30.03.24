@@ -35,10 +35,8 @@ console.log('works');
 
     document.addEventListener('DOMContentLoaded', async () => {
         const listContainer = document.getElementById('products-container');
+        const products = await getProducts();
 
-        fetch('https://fakestoreapi.com/products')
-            .then((res) => res.json())
-            .then((products) => {
               for (const product of products) {
                 const productCard = document.createElement('article');
                 productCard.classList.add('col-2-md', 'm-2', 'card', 'cursor-pointer');
@@ -53,6 +51,11 @@ console.log('works');
               }
                 
             });
-    });  
+
+async function getProducts() {
+    const response = await fetch('https://fakestoreapi.com/products');
+    const products = await response.json();
+    return products;
+}
 
 
